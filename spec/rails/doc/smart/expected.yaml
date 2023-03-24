@@ -3,7 +3,7 @@
 # When you write a spec in spec/requests, running the spec with `OPENAPI=1 rspec` will
 # update this file automatically. You can also manually edit this file.
 ---
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: rspec-openapi
   version: 1.0.0
@@ -50,22 +50,23 @@ paths:
                 type: array
                 items:
                   "$ref": "#/components/schemas/Table"
-              example:
-              - id: 42
-                name: access
-                description: logs
-                database:
-                  id: 4242
-                  name: production
-                null_sample:
-                storage_size: 12.3
-                created_at: '2020-07-17T00:00:00+00:00'
-                updated_at: '2020-07-17T00:00:00+00:00'
-                columns:
-                  - name: id
-                    column_type: integer
-                  - name: description
-                    column_type: varchar
+              examples:
+                'returns a table with changes !!!':
+                  id: 42
+                  name: access
+                  description: logs
+                  database:
+                    id: 4242
+                    name: production
+                  null_sample:
+                  storage_size: 12.3
+                  created_at: '2020-07-17T00:00:00+00:00'
+                  updated_at: '2020-07-17T00:00:00+00:00'
+                  columns:
+                    - name: id
+                      column_type: integer
+                    - name: description
+                      column_type: varchar
           headers:
             X-Cursor:
               schema:
@@ -143,14 +144,15 @@ paths:
             "application/json":
               schema:
                 "$ref": "#/components/schemas/User"
-              example:
-                name: John Doe
-                relations:
-                  avatar:
-                    url: "https://example.com/avatar.jpg"
-                  pets:
-                    - name: doge
-                      age: 8
+              examples:
+                'returns a user':
+                  name: John Doe
+                  relations:
+                    avatar:
+                      url: "https://example.com/avatar.jpg"
+                    pets:
+                      - name: doge
+                        age: 8
       summary: show
       tags:
       - User

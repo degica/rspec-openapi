@@ -14,7 +14,9 @@ class << RSpec::OpenAPI::SchemaBuilder = Object.new
       response[:content] = {
         normalize_content_type(record.response_content_type) => {
           schema: build_property(record.response_body, disposition: disposition),
-          example: response_example(record, disposition: disposition),
+          examples: {
+            record.description => response_example(record, disposition: disposition)
+          }
         }.compact,
       }
     end
@@ -115,7 +117,9 @@ class << RSpec::OpenAPI::SchemaBuilder = Object.new
       content: {
         normalize_content_type(record.request_content_type) => {
           schema: build_property(record.request_params),
-          example: (build_example(record.request_params) if example_enabled?),
+          examples: {
+            record.description => (build_example(record.request_params) if example_enabled?)
+          }.compact,
         }.compact,
       },
     }
